@@ -1,5 +1,23 @@
 // display todays date
-var currentDay =dayjs()
+let currentDay = dayjs();
+
+console.log(currentDay);
+
+const currentDay = document.getElementById("currentDay");
+const paragraph = document.createElement("p");
+paragraph.textContent = "This is some text from the console.";
+currentDay.appendChild(paragraph);
+
+
+const myDiv = document.getElementById("myDiv");
+
+// Step 2: Create a new element
+const paragraph = document.createElement("p");
+paragraph.textContent = "This is some text from the console.";
+
+// Step 3: Append the element to the selected element
+myDiv.appendChild(paragraph);
+
 
 //dayjs prob use now and format (read the docs)
 //get todays date in the right format and save to a variable
