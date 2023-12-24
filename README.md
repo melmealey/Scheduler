@@ -1,6 +1,6 @@
 ## Scheduler
 
-<img width="436" alt="Screenshot 2023-12-18 at 3 56 45 PM" src="https://github.com/melmealey/Quiz/assets/147653410/dcb119e2-011e-4d13-a823-7872efd7d2e9">
+<img width="1348" alt="Screenshot 2023-12-23 at 10 11 46 PM" src="https://github.com/melmealey/Scheduler/assets/147653410/db0a3032-d816-4121-a109-6f9d3ec319c0">
 
 ## Description
 
