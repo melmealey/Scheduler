@@ -8,64 +8,80 @@ let paragraph = document.createElement("p");
 paragraph.innerText = date;
 currentDay.appendChild(paragraph);
 
-
-//use dayjs to get the current hour and store it in a variable
-let currentHour = dayjs().format('h A');
+let currentHour = dayjs().format('hA');
 console.log(currentHour);
 
-let now = currentHour
-let timeBlock = workingHours
 
-if (timeBlock < now) {
-    $(this).removeClass("future");
-    $(this).removeClass("present");
-    $(this).addClass("past");
+const hours = ['1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM', '12PM'];
+
+console.log (hours);
+
+function checkHour() {
+  for (let i = 0; i < hours.length; i++) {
+ 
+    let element = document.querySelectorAll('.py-3')[i];
+    let parent = element.closest('.row');
+    console.log(parent);
+    console.log(element.innerText);
+    console.log(currentHour);
+    console.log(element.innerText === currentHour);
+
+    if (element.innerText === currentHour) {
+      parent.setAttribute('class', 'row time-block present');
+    } else if (element.innerText > currentHour) {
+      parent.setAttribute('class', 'row time-block future');
+    } else if (element.innerText < currentHour) {
+      parent.setAttribute('class', 'row time-block past');
+    }
+  }
 }
 
-// Define the start and end times for working hours
-const startHour = dayjs().hour(9).minute(0).second(0);
-const endHour = dayjs().hour(17).minute(0).second(0);
+checkHour ();
 
-// Check if the current time is within working hours
-if (dayjs().isBetween(startHour, endHour)) {
-  // Current time is within working hours
-  console.log("Current time is within working hours");
-} else {
-  // Current time is outside working hours
-  console.log("Current time is outside working hours");
-}
+// function makePlans() {
 
+//     $(".hour").each(function() {
+//         var currHour = $(this).text();
+//         var currPlan = localStorage.getItem(currHour);
 
-// const divs =document.querySelectorAll(`.py-3`) //this is an array
-// console.log(divs)
-// for loop
-//     get inner test from each div
-//     compare that to the current hour (if statement)
-//         if inner text is less than current hour
-//         .setAttribute('class', 'row time block past')
-//         if inner text is equal to than current hour
-//         .setAttribute('class', row time-block present')
-//         if inner text is more than the current hour
-//         .setAttribute ('class', row time block future)
+//         // console.log(this);
 
+//         if(currPlan !== null) {
+//             $(this).siblings(".plan").val(currPlan);
+//         }
+//     });
+// }
 
-//                     // To check the time and add the classes for background indicators
-//                     if (blockTime < timeNow) {
-//                         $(this).removeClass("future");
-//                         $(this).removeClass("present");
-//                         $(this).addClass("past");
-//                     }
-//                     else if (blockTime === timeNow) {
-//                         $(this).removeClass("past");
-//                         $(this).removeClass("future");
-//                         $(this).addClass("present");
-//                     }
-//                     else {
-//                         $(this).removeClass("present");
-//                         $(this).removeClass("past");
-//                         $(this).addClass("future");
+ //grabs values from time and value divs and saves them to local storage
+//  $(".saveBtn").click(function (event) {
+//     event.preventDefault();
+//     var value = $(this).siblings(".time-block").val();
+//     var time = $(this).parent().attr("id").split("-")[1];
+//     localStorage.setItem(time, value);
+//   });
 
-//                     }
+//   //retrieves items from local storage and sets them in proper places
+//   $("#hour-09 .time-block").val(localStorage.getItem("09"));
+//   $("#hour-10 .time-block").val(localStorage.getItem("10"));
+//   $("#hour-11 .time-block").val(localStorage.getItem("11"));
+//   $("#hour-12 .time-block").val(localStorage.getItem("12"));
+//   $("#hour-13 .time-block").val(localStorage.getItem("13"));
+//   $("#hour-14 .time-block").val(localStorage.getItem("14"));
+//   $("#hour-15 .time-block").val(localStorage.getItem("15"));
+//   $("#hour-16 .time-block").val(localStorage.getItem("16"));
+//   $("#hour-17 .time-block").val(localStorage.getItem("17"));
+// });
+
+// makePlans();
+
+// const data = {};
+// const dataString = JSON.stringify(data);
+// localStorage.setItem("userData", dataString);
+
+// const storedDataString = localStorage.getItem("userData");
+// const storedData = JSON.parse(storedDataString);
+// console.log(storedData);
+
 
 //     save things in localstorage
 //     get value from text input
