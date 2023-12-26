@@ -13,6 +13,29 @@ currentDay.appendChild(paragraph);
 let currentHour = dayjs().format('h A');
 console.log(currentHour);
 
+let now = currentHour
+let timeBlock = workingHours
+
+if (timeBlock < now) {
+    $(this).removeClass("future");
+    $(this).removeClass("present");
+    $(this).addClass("past");
+}
+
+// Define the start and end times for working hours
+const startHour = dayjs().hour(9).minute(0).second(0);
+const endHour = dayjs().hour(17).minute(0).second(0);
+
+// Check if the current time is within working hours
+if (dayjs().isBetween(startHour, endHour)) {
+  // Current time is within working hours
+  console.log("Current time is within working hours");
+} else {
+  // Current time is outside working hours
+  console.log("Current time is outside working hours");
+}
+
+
 // const divs =document.querySelectorAll(`.py-3`) //this is an array
 // console.log(divs)
 // for loop
