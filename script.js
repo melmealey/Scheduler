@@ -1,6 +1,5 @@
 // display todays date
-let date = dayjs().format('MMMM-DD-YYYY');
-// console.log(date);
+let date = dayjs().format('dddd, MMMM DD, YYYY');
 
 let currentDay = document.getElementById('currentDay');
 
@@ -8,23 +7,22 @@ let paragraph = document.createElement("p");
 paragraph.innerText = date;
 currentDay.appendChild(paragraph);
 
+//establish the current hour
 let currentHour = dayjs().format('hA');
-// console.log(currentHour);
 
+const saveBtn = document.querySelector("#saveBtn");
 
-const hours = ['1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM', '12PM'];
-
-// console.log (hours);
+let workHours = ["9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM",];
 
 function checkHour() {
-  for (let i = 0; i < hours.length; i++) {
- 
+  for (let i = 0; i < workHours.length; i++) {
+
     let element = document.querySelectorAll('.py-3')[i];
     let parent = element.closest('.row');
-    // console.log(parent);
-    // console.log(element.innerText);
-    // console.log(currentHour);
-    // console.log(element.innerText === currentHour);
+    console.log(parent);
+    console.log(element.innerText);
+    console.log(currentHour);
+    console.log(element.innerText === currentHour);
 
     if (element.innerText === currentHour) {
       parent.setAttribute('class', 'row time-block present');
@@ -36,35 +34,29 @@ function checkHour() {
   }
 }
 
-checkHour ();
-
-//Enter data in hour blocks that will be saved to local storage
-function makePlans() {
+checkHour();
 
 
+// Enter data in hour blocks that will be saved to local storage
+const userInput = document.querySelector('textarea');
+localStorage.setItem('input', JSON.stringify(userInput.textContent));
 
-}
-
-// const userInput = document.querySelector ('textarea');
-// localStorage.setItem ('input', JSON.stringify (userInput));
-
-// let inputs = localStorage.getItem ('inputs');
-// localStorage.getItem ('inputs', JSON.parse (userInput));
-
-
-const userInput = document.querySelector('#textarea').value; 
-const inputObject = { input: userInput };
-localStorage.setItem('input', JSON.stringify(inputObject));
-
+// To retrieve the value from localStorage:
 const storedInput = localStorage.getItem('input');
 const parsedInput = JSON.parse(storedInput);
 
-saveBtn.addEventListenr ('click',save)
+console.log(parsedInput)
 
+function save() {
+  const input = userInput.textContent;
+  localStorage.setItem('input', JSON.stringify(input));
+}
 
-//     save things in localstorage
-//     get value from text input
-//     save to local storage ( also save the time! as an object)
+saveBtn.addEventListener("click", save);
+
+save();
+
+// ( also save the time! as an object)
 
 
 
