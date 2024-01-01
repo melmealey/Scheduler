@@ -1,46 +1,26 @@
 // display todays date
 let date = dayjs().format('dddd, MMMM DD, YYYY');
-
 let currentDay = document.getElementById('currentDay');
-
 let paragraph = document.createElement("p");
 paragraph.innerText = date;
 currentDay.appendChild(paragraph);
 
-//establish the current hour
-let currentHour = dayjs().format('hA');
-// console.log(currentHour)
+// //establish the current hour
+const currentHour = document.querySelectorAll('.time-block');
+const now = dayjs().format('H');
 
-
-let workHours = document.querySelectorAll(".time-block");
-
-function checkHour() {
-  for (let i = 0; i < workHours.length; i++) {
-    // const hour = workHours[i].idsubstring (5)
-    // if(now === hour) {
-    //   workHours[i].setAttribute('class', 'row time-block present')
-    // }
-    let element = document.querySelectorAll('.time-block')[i];
-    let parent = element.closest('.row');
-    // console.log(parent);
-    // console.log(element.innerText);
-    // console.log(currentHour);
-    // console.log(element.innerText === currentHour);
-
-    if (element.innerText === currentHour) {
-      parent.setAttribute('class', 'row time-block present');
-    } else if (element.innerText > currentHour) {
-      parent.setAttribute('class', 'row time-block future');
-    } else if (element.innerText < currentHour) {
-      parent.setAttribute('class', 'row time-block past');
-    }
+for (let i = 0; i < currentHour.length; i++) {
+  const hour = currentHour[i].id.substring(5);
+  if (now === hour) {
+    currentHour[i].setAttribute('class', 'row time-block present');
+  } else if (now > hour) {
+    currentHour[i].setAttribute('class', 'row time-block past');
+  } else {
+    currentHour[i].setAttribute('class', 'row time-block future');
   }
-}
-
-checkHour();
+} 
 
 // Enter data in hour blocks that will be saved to local storage
-
 const saveButtons = document.querySelectorAll('button');
 const userInput = document.querySelectorAll('.description');
 
@@ -50,6 +30,7 @@ for (let i = 0; i < saveButtons.length; i++) {
     localStorage.setItem(i, text);
   };
 
+  // Retrieve from localStorage and display in the input fields when the page is loaded.
   const retrieve = () => {
     const savedText = localStorage.getItem(i);
     userInput[i].value = savedText;
@@ -57,23 +38,5 @@ for (let i = 0; i < saveButtons.length; i++) {
 
   saveButtons[i].addEventListener('click', save);
   retrieve();
+
 }
-
-// const save = () => {
-//   const input = userInput;
-//   localStorage.setItem('input', JSON.stringify(input));
-
- 
-// }
-
-// save();
-
-
-// saveBtn.addEventListener("click", save);
-
-// // ( also save the time! as an object)
-
-
-
-
-
