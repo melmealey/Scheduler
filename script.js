@@ -7,19 +7,20 @@ currentDay.appendChild(paragraph);
 
 // //establish the current hour
 const currentHour = document.querySelectorAll('.time-block');
-const now = dayjs();
+const now = parseInt(dayjs().format('H'));
 
 for (let i = 0; i < currentHour.length; i++) {
-  const hour = dayjs(currentHour[i].id.substring(5), 'H');
+  const hour = parseInt(currentHour[i].id.substring(5));
 
-  if (now.isSame(hour, 'hour')) {
+  if (now === hour) {
     currentHour[i].className = 'row time-block present';
-  } else if (now.isAfter(hour, 'hour')) {
+  } else if (now > hour) {
     currentHour[i].className = 'row time-block past';
   } else {
     currentHour[i].className = 'row time-block future';
   }
 }
+
 
 // Enter data in hour blocks that will be saved to local storage
 const saveButtons = document.querySelectorAll('button');
