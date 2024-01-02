@@ -7,11 +7,10 @@ currentDay.appendChild(paragraph);
 
 // //establish the current hour
 const currentHour = document.querySelectorAll('.time-block');
-const now = parseInt(dayjs().format('H'));
 
 for (let i = 0; i < currentHour.length; i++) {
   const hour = parseInt(currentHour[i].id.substring(5));
-
+  const now = parseInt(dayjs().format('H'));
   if (now === hour) {
     currentHour[i].className = 'row time-block present';
   } else if (now > hour) {
@@ -20,7 +19,6 @@ for (let i = 0; i < currentHour.length; i++) {
     currentHour[i].className = 'row time-block future';
   }
 }
-
 
 // Enter data in hour blocks that will be saved to local storage
 const saveButtons = document.querySelectorAll('button');
@@ -32,7 +30,7 @@ for (let i = 0; i < saveButtons.length; i++) {
     localStorage.setItem(i, text);
   };
 
-  // Retrieve from localStorage and display in the input fields when the page is loaded.
+  // Retrieve from localStorage and display in the input fields when the page is loaded
   const retrieve = () => {
     const savedText = localStorage.getItem(i);
     userInput[i].value = savedText;
